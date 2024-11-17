@@ -2,6 +2,9 @@
 using System.Windows.Forms;
 using TOGETHERCULTURECRM.Classes.Auth.ForgetPassword;
 using TOGETHERCULTURECRM.Classes.Auth.Login;
+using TOGETHERCULTURECRM.Classes.Services.Membership;
+using TOGETHERCULTURECRM.Classes.AdminDashboard;
+using TOGETHERCULTURECRM.Classes.MembersDashboard;
 
 namespace TOGETHERCULTURECRM.Classes.Auth
 {
@@ -19,28 +22,47 @@ namespace TOGETHERCULTURECRM.Classes.Auth
         // Event handler for the login button click event
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // Retrieve email and password from the respective text boxes
             string email = txtEmail.Text;
             string password = txtPassword.Text;
 
-            // Authenticate user using LoginManager
             User user = loginManager.AuthenticateUser(email, password);
 
             if (user != null)
             {
-                // Display a welcome message based on the user's type
                 if (user.UserType == "Admin")
                 {
+                    // Navigate to Admin Dashboard
                     MessageBox.Show($"Welcome Admin {user.FirstName}");
+                    AdminHomePgForm adminDashboard = new AdminHomePgForm();
+                    adminDashboard.Show();
+                    this.Close();
                 }
                 else if (user.UserType == "Member")
                 {
-                    MessageBox.Show($"Welcome Member {user.FirstName}");
+                    if (user.MembershipStatus == "pending")
+                    {
+                        // Navigate to Select Membership Plan Form
+                        MessageBox.Show($"Welcome {user.FirstName}, please select your membership plan.");
+                        SelectMembershipPlanForm selectPlanForm = new SelectMembershipPlanForm();
+                        selectPlanForm.Show();
+                        this.Close();
+                    }
+                    else if (user.MembershipStatus == "active")
+                    {
+                        // Navigate to Member Dashboard
+                        MessageBox.Show($"Welcome {user.FirstName}");
+                        MemberHomePgForm memberDashboard = new MemberHomePgForm();
+                        memberDashboard.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Your membership status is inactive or not recognized.");
+                    }
                 }
             }
             else
             {
-                // Display an error message if authentication fails
                 MessageBox.Show("Invalid email or password.");
             }
         }

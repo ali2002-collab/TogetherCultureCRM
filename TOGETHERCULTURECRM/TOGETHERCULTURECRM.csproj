@@ -77,6 +77,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AdminDashboard\AdminHomePgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\AdminDashboard\AdminHomePgForm.Designer.cs">
+      <DependentUpon>AdminHomePgForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\AdminDashboard\ApproveMembers\ApproveMembers.cs" />
     <Compile Include="Classes\Auth\ForgetPassword\ForgetPassword.cs" />
     <Compile Include="Classes\Auth\ForgetPassword\forgetPasswordForm.cs">
       <SubType>Form</SubType>
@@ -107,6 +114,23 @@
     <Compile Include="Classes\Auth\Register\RegisterManager.cs" />
     <Compile Include="Classes\Auth\User.cs" />
     <Compile Include="Classes\DbManager\DbHelper.cs" />
+    <Compile Include="Classes\MembersDashboard\MemberHomePgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\MembersDashboard\MemberHomePgForm.Designer.cs">
+      <DependentUpon>MemberHomePgForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Services\Chats\ChatService.cs" />
+    <Compile Include="Classes\Services\DigitalContent\PostService.cs" />
+    <Compile Include="Classes\Services\Events\EventsService.cs" />
+    <Compile Include="Classes\Services\Friends\FriendService.cs" />
+    <Compile Include="Classes\Services\Membership\SelectMembershipPlanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Membership\SelectMembershipPlanForm.Designer.cs">
+      <DependentUpon>SelectMembershipPlanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Services\Notifcation\NotificationService.cs" />
     <Compile Include="CrmIntro.cs">
       <SubType>Form</SubType>
     </Compile>

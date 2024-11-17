@@ -7,44 +7,59 @@ namespace TOGETHERCULTURECRM.Classes.Auth.Register
 {
     internal class RegisterManager
     {
-        // Instance of DbHelper for handling database operations
         private DbHelper dbHelper = new DbHelper();
 
-        // Method to register a new user in the database
+        // Method to register a new member in the database
         public bool RegisterUser(string firstName, string lastName, string email, string password, string gender, DateTime dateOfBirth)
         {
-            // Hash the password before storing it to ensure security
+            // Hash the password for security
             string hashedPassword = PasswordEncryptor.HashPassword(password);
 
-            // SQL query to insert the new user data into the Users table
-            string query = "INSERT INTO Users (first_name, last_name, email, password, gender, date_of_birth, membership_status, user_type, created_at) " +
-                           "VALUES (@FirstName, @LastName, @Email, @Password, @Gender, @DateOfBirth, 'pending', 'Member', GETDATE())";
+            // SQL query to insert the new member into the Users table
+            string userQuery = "INSERT INTO Users (first_name, last_name, email, password, gender, date_of_birth, membership_status, user_type, created_at) " +
+                               "VALUES (@FirstName, @LastName, @Email, @Password, @Gender, @DateOfBirth, 'pending', 'Member', GETDATE()); " +
+                               "SELECT SCOPE_IDENTITY();"; // Get the ID of the newly inserted user
 
-            // Define the parameters to be used in the SQL query
-            SqlParameter[] parameters = new SqlParameter[]
+            SqlParameter[] userParameters = new SqlParameter[]
             {
                 new SqlParameter("@FirstName", firstName),
                 new SqlParameter("@LastName", lastName),
                 new SqlParameter("@Email", email),
-                new SqlParameter("@Password", hashedPassword), // Store the hashed password
+                new SqlParameter("@Password", hashedPassword),
                 new SqlParameter("@Gender", gender),
                 new SqlParameter("@DateOfBirth", dateOfBirth)
             };
 
             try
             {
-                // Execute the query to insert the user data
-                int rowsAffected = dbHelper.ExecuteNonQuery(query, parameters);
+                // Execute the user insertion query and get the new user ID
+                object result = dbHelper.ExecuteScalar(userQuery, userParameters);
 
-                // Return true if the user was successfully registered (i.e., at least one row was affected)
-                return rowsAffected > 0;
+                if (result != null)
+                {
+                    int userId = Convert.ToInt32(result);
+
+                    // Insert into Members table with plan_id as NULL
+                    string memberQuery = "INSERT INTO Members (user_id, plan_id, start_date) " +
+                                         "VALUES (@UserId, NULL, @StartDate)"; // plan_id is set to NULL
+
+                    SqlParameter[] memberParameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@UserId", userId),
+                        new SqlParameter("@StartDate", DateTime.Now.Date)
+                    };
+
+                    dbHelper.ExecuteNonQuery(memberQuery, memberParameters);
+
+                    return true; // Registration successful
+                }
+
+                return false; // Registration failed
             }
             catch (Exception ex)
             {
-                // Log the exception message for debugging purposes
+                // Log the exception for debugging
                 Console.WriteLine($"Error: {ex.Message}");
-
-                // Return false to indicate that registration failed
                 return false;
             }
         }
