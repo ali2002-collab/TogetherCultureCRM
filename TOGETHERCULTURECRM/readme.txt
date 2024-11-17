@@ -1,7 +1,7 @@
 so what is happening is that by default any changes in db is occuring in
 runtime DB which in bin folder, we have to make changes in app.config to make changes
 visible to main db:
-add the path of db (path of db formed inside in your system) to |DataDirectory|
+add the path of db (path of db formed inside in your system) to |DataDirectory| in app.config file
 
 
 <?xml version="1.0" encoding="utf-8" ?>
