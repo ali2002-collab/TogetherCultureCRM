@@ -84,6 +84,12 @@
       <DependentUpon>AdminHomePgForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\AdminDashboard\ApproveMembers\ApproveMembers.cs" />
+    <Compile Include="Classes\AdminDashboard\ApproveMembers\ApproveMembersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\AdminDashboard\ApproveMembers\ApproveMembersForm.Designer.cs">
+      <DependentUpon>ApproveMembersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Auth\ForgetPassword\ForgetPassword.cs" />
     <Compile Include="Classes\Auth\ForgetPassword\forgetPasswordForm.cs">
       <SubType>Form</SubType>
@@ -97,6 +103,7 @@
     <Compile Include="Classes\Auth\ForgetPassword\ForgetPasswordForm2.Designer.cs">
       <DependentUpon>ForgetPasswordForm2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Auth\LoggedInUser.cs" />
     <Compile Include="Classes\Auth\Login\loginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +131,19 @@
     <Compile Include="Classes\Services\DigitalContent\PostService.cs" />
     <Compile Include="Classes\Services\Events\EventsService.cs" />
     <Compile Include="Classes\Services\Friends\FriendService.cs" />
+    <Compile Include="Classes\Services\Interest Selection\InterestSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Interest Selection\InterestSelectionForm.Designer.cs">
+      <DependentUpon>InterestSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Services\Membership\MembershipManager.cs" />
+    <Compile Include="Classes\Services\Membership\RequestSentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Membership\RequestSentForm.Designer.cs">
+      <DependentUpon>RequestSentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Services\Membership\SelectMembershipPlanForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +160,9 @@
     <Compile Include="Classes\Auth\PasswordEncryption\HashExisitingAccs\HashExistingPass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Classes\AdminDashboard\ApproveMembers\ApproveMembersForm.resx">
+      <DependentUpon>ApproveMembersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Classes\Auth\ForgetPassword\forgetPasswordForm.resx">
       <DependentUpon>forgetPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,6 +174,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Classes\Auth\Register\registerForm.resx">
       <DependentUpon>registerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\MembersDashboard\MemberHomePgForm.resx">
+      <DependentUpon>MemberHomePgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Membership\RequestSentForm.resx">
+      <DependentUpon>RequestSentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Membership\SelectMembershipPlanForm.resx">
+      <DependentUpon>SelectMembershipPlanForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrmIntro.resx">
       <DependentUpon>CrmIntro.cs</DependentUpon>
@@ -181,7 +213,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Assets\Beige Minimal Pricing Plan Brainstorm.png" />
     <Content Include="Assets\TC_Logos-01.png" />
+    <None Include="Assets\Untitled design %284%29.png" />
     <Content Include="TcCRMDB.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

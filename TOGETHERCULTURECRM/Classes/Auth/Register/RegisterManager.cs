@@ -17,7 +17,7 @@ namespace TOGETHERCULTURECRM.Classes.Auth.Register
 
             // SQL query to insert the new member into the Users table
             string userQuery = "INSERT INTO Users (first_name, last_name, email, password, gender, date_of_birth, membership_status, user_type, created_at) " +
-                               "VALUES (@FirstName, @LastName, @Email, @Password, @Gender, @DateOfBirth, 'pending', 'Member', GETDATE()); " +
+                               "VALUES (@FirstName, @LastName, @Email, @Password, @Gender, @DateOfBirth, 'not a member', 'Member', GETDATE()); " +
                                "SELECT SCOPE_IDENTITY();"; // Get the ID of the newly inserted user
 
             SqlParameter[] userParameters = new SqlParameter[]

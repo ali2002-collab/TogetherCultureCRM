@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
-using TOGETHERCULTURECRM.Classes.Auth.ForgetPassword;
 using TOGETHERCULTURECRM.Classes.Auth.Login;
-using TOGETHERCULTURECRM.Classes.Services.Membership;
-using TOGETHERCULTURECRM.Classes.AdminDashboard;
 using TOGETHERCULTURECRM.Classes.MembersDashboard;
+using TOGETHERCULTURECRM.Classes.Services.Membership;
+using TOGETHERCULTURECRM.Classes.Auth.ForgetPassword;
+using TOGETHERCULTURECRM.Classes.AdminDashboard.ApproveMembers;
 
 namespace TOGETHERCULTURECRM.Classes.Auth
 {
+
     public partial class loginForm : Form
     {
         // Instance of LoginManager to handle user authentication
@@ -19,67 +20,82 @@ namespace TOGETHERCULTURECRM.Classes.Auth
             InitializeComponent();
         }
 
-        // Event handler for the login button click event
+        // Event handler for the "Login" button click event
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            // Retrieve the entered email and password from text boxes
             string email = txtEmail.Text;
             string password = txtPassword.Text;
 
+            // Attempt to authenticate the user using the provided credentials
             User user = loginManager.AuthenticateUser(email, password);
 
+            // Check if the user is successfully authenticated
             if (user != null)
             {
-                if (user.UserType == "Admin")
+                // Redirect the user based on their user type
+                if (LoggedInUser.UserType == "Admin")
                 {
-                    // Navigate to Admin Dashboard
-                    MessageBox.Show($"Welcome Admin {user.FirstName}");
-                    AdminHomePgForm adminDashboard = new AdminHomePgForm();
+                    // Show welcome message and open the admin dashboard
+                    MessageBox.Show($"Welcome Admin {LoggedInUser.FirstName}");
+                    ApproveMembersForm adminDashboard = new ApproveMembersForm();
                     adminDashboard.Show();
-                    this.Close();
+                    this.Close(); // Close the login form
                 }
-                else if (user.UserType == "Member")
+                else if (LoggedInUser.UserType == "Member")
                 {
-                    if (user.MembershipStatus == "pending")
+                    // Check the membership status of the member
+                    if (LoggedInUser.MembershipStatus == "not a member")
                     {
-                        // Navigate to Select Membership Plan Form
-                        MessageBox.Show($"Welcome {user.FirstName}, please select your membership plan.");
+                        // Prompt the member to select a membership plan
+                        MessageBox.Show($"Welcome {LoggedInUser.FirstName}, please select your membership plan.");
                         SelectMembershipPlanForm selectPlanForm = new SelectMembershipPlanForm();
                         selectPlanForm.Show();
-                        this.Close();
+                        this.Close(); // Close the login form
                     }
-                    else if (user.MembershipStatus == "active")
+                    else if (LoggedInUser.MembershipStatus == "active")
                     {
-                        // Navigate to Member Dashboard
-                        MessageBox.Show($"Welcome {user.FirstName}");
+                        // Show welcome message and open the member home page
+                        MessageBox.Show($"Welcome {LoggedInUser.FirstName}");
                         MemberHomePgForm memberDashboard = new MemberHomePgForm();
                         memberDashboard.Show();
-                        this.Close();
+                        this.Close(); // Close the login form
+                    }
+                    else if (LoggedInUser.MembershipStatus == "pending")
+                    {
+                        // Inform the member that their membership request is still pending
+                        MessageBox.Show($"Welcome {LoggedInUser.FirstName}, Your Request Is Still Pending");
+                        RequestSentForm requestPendingForm = new RequestSentForm();
+                        requestPendingForm.Show();
+                        this.Close(); // Close the login form
                     }
                     else
                     {
-                        MessageBox.Show("Your membership status is inactive or not recognized.");
+                        // Display an error message for invalid credentials
+                        MessageBox.Show("Invalid Pass or email");
                     }
                 }
             }
             else
             {
+                // Display an error message for unsuccessful authentication
                 MessageBox.Show("Invalid email or password.");
             }
         }
 
-        
+       
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
             
         }
 
-      
+        
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-           
+            
         }
 
-        // Event handler for "Forget Password" link click event
+        // Event handler for the "Forget Password" link click event
         private void ForgetPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Create an instance of forgetPasswordForm to allow the user to reset their password
@@ -98,13 +114,13 @@ namespace TOGETHERCULTURECRM.Classes.Auth
             forgetPasswordForm.Show();
         }
 
-        // Event handler for "Register" link click event
+        // Event handler for the "Register" link click event
         private void RegisterLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Create and show the registration form
             registerForm registerForm = new registerForm();
             registerForm.Show();
-            this.Close(); // Hide the current login form
+            this.Close(); // Close the current login form
         }
     }
 }
