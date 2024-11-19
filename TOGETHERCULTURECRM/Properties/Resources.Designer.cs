@@ -63,9 +63,29 @@ namespace TOGETHERCULTURECRM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Beige_Minimal_Pricing_Plan_Brainstorm {
+            get {
+                object obj = ResourceManager.GetObject("Beige Minimal Pricing Plan Brainstorm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TC_Logos_01 {
             get {
                 object obj = ResourceManager.GetObject("TC_Logos-01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Untitled_design__4_ {
+            get {
+                object obj = ResourceManager.GetObject("Untitled design (4)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,6 +1,6 @@
-﻿namespace TOGETHERCULTURECRM.Classes.MembersDashboard
+﻿namespace TOGETHERCULTURECRM.Classes.Services.Interest_Selection
 {
-    partial class MemberHomePgForm
+    partial class InterestSelectionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // MemberHomePgForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "MemberHomePgForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MemberHomePgForm";
-            this.ResumeLayout(false);
-
+            this.Text = "InterestSelectionForm";
         }
 
         #endregion
