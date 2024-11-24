@@ -121,6 +121,12 @@
     <Compile Include="Classes\Auth\Register\RegisterManager.cs" />
     <Compile Include="Classes\Auth\User.cs" />
     <Compile Include="Classes\DbManager\DbHelper.cs" />
+    <Compile Include="Classes\MembersDashboard\Home\HomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\MembersDashboard\Home\HomeForm.Designer.cs">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\MembersDashboard\MemberHomePgForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,7 @@
       <DependentUpon>SelectMembershipPlanForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Services\Notifcation\NotificationService.cs" />
+    <Compile Include="Classes\Services\Search\SearchManager.cs" />
     <Compile Include="CrmIntro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Classes\Auth\Register\registerForm.resx">
       <DependentUpon>registerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\MembersDashboard\Home\HomeForm.resx">
+      <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Classes\MembersDashboard\MemberHomePgForm.resx">
       <DependentUpon>MemberHomePgForm.cs</DependentUpon>
@@ -214,6 +224,10 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="Assets\Beige Minimal Pricing Plan Brainstorm.png" />
+    <None Include="Assets\icons8-home-24.png" />
+    <None Include="Assets\icons8-notification-24.png" />
+    <None Include="Assets\icons8-avatar-50.png" />
+    <None Include="Assets\icons8-avatar-48.png" />
     <Content Include="Assets\TC_Logos-01.png" />
     <None Include="Assets\Untitled design %284%29.png" />
     <Content Include="TcCRMDB.mdf">
