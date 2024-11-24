@@ -45,30 +45,27 @@ namespace TOGETHERCULTURECRM.Classes.Services.Membership
         // Event handler for the "Pay Now and Interest" button click event
         private void payNowAndInterest_Click(object sender, EventArgs e)
         {
-            // Check if a membership plan is selected
+            // Ensure a plan is selected
             if (PlanSelection.SelectedItem == null)
             {
-                // Show a warning message if no plan is selected
                 MessageBox.Show("Please select a membership plan.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Exit the method if no plan is selected
+                return;
             }
 
-            // Retrieve the selected plan ID and the user ID of the logged-in user
+            // Get selected plan ID and logged-in user ID
             int selectedPlanId = (int)PlanSelection.SelectedValue;
             int userId = LoggedInUser.UserId;
 
-            // Submit the membership request using MembershipManager
+            // Submit the membership request
             bool requestSubmitted = membershipManager.SubmitMembershipRequest(userId, selectedPlanId);
 
             if (requestSubmitted)
             {
-                // Show a success message if the request is submitted successfully
-                MessageBox.Show("Your membership request has been sent for admin approval. Thanks for waiting!", "Request Sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Your membership request has been sent for admin approval.", "Request Sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close(); // Close the form
             }
             else
             {
-                // Show an error message if the request submission fails
                 MessageBox.Show("Failed to submit your membership request. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

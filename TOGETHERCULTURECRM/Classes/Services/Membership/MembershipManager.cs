@@ -11,26 +11,25 @@ namespace TOGETHERCULTURECRM.Classes.Services.Membership
         // Method to submit a membership request for approval
         public bool SubmitMembershipRequest(int userId, int planId)
         {
-            // Query to insert the membership request
+            // Insert into MembershipRequests, update Members and Users in a single transaction
             string insertRequestQuery = @"
                 INSERT INTO MembershipRequests (member_id, selected_plan, status, request_date)
-                VALUES (@UserId, @PlanId, 'Pending', GETDATE());";
+                SELECT member_id, @PlanId, 'Pending', GETDATE() 
+                FROM Members 
+                WHERE user_id = @UserId";
 
-            // Query to update the Members table with the selected plan ID
-            string updateMembersQuery = @"
+                    string updateMembersQuery = @"
                 UPDATE Members 
                 SET plan_id = @PlanId 
-                WHERE user_id = @UserId;";
+                WHERE user_id = @UserId";
 
-            // Query to update the Users table and set membership status to 'pending'
-            string updateUserStatusQuery = @"
+                    string updateUserStatusQuery = @"
                 UPDATE Users 
                 SET membership_status = 'pending' 
-                WHERE user_id = @UserId;";
+                WHERE user_id = @UserId";
 
             try
             {
-                // Using a single database connection and transaction
                 using (SqlConnection connection = dbHelper.GetConnection())
                 {
                     connection.Open();
@@ -38,44 +37,50 @@ namespace TOGETHERCULTURECRM.Classes.Services.Membership
 
                     try
                     {
-                        // Insert the membership request
+                        // Insert into MembershipRequests
                         using (SqlCommand command = new SqlCommand(insertRequestQuery, connection, transaction))
                         {
-                            command.Parameters.Add(new SqlParameter("@UserId", userId));
-                            command.Parameters.Add(new SqlParameter("@PlanId", planId));
-                            command.ExecuteNonQuery();
+                            command.Parameters.AddWithValue("@UserId", userId);
+                            command.Parameters.AddWithValue("@PlanId", planId);
+                            int rowsInserted = command.ExecuteNonQuery();
+
+                            if (rowsInserted == 0)
+                            {
+                                throw new Exception("Failed to insert into MembershipRequests.");
+                            }
                         }
 
-                        // Update the Members table
+                        // Update Members table
                         using (SqlCommand command = new SqlCommand(updateMembersQuery, connection, transaction))
                         {
-                            command.Parameters.Add(new SqlParameter("@UserId", userId));
-                            command.Parameters.Add(new SqlParameter("@PlanId", planId));
-                            int membersUpdated = command.ExecuteNonQuery();
-                            if (membersUpdated == 0)
+                            command.Parameters.AddWithValue("@UserId", userId);
+                            command.Parameters.AddWithValue("@PlanId", planId);
+                            int rowsUpdated = command.ExecuteNonQuery();
+
+                            if (rowsUpdated == 0)
                             {
-                                throw new Exception("No rows were updated in the Members table.");
+                                throw new Exception("Failed to update Members table.");
                             }
                         }
 
-                        // Update the Users table
+                        // Update Users table
                         using (SqlCommand command = new SqlCommand(updateUserStatusQuery, connection, transaction))
                         {
-                            command.Parameters.Add(new SqlParameter("@UserId", userId));
-                            int usersUpdated = command.ExecuteNonQuery();
-                            if (usersUpdated == 0)
+                            command.Parameters.AddWithValue("@UserId", userId);
+                            int rowsUpdated = command.ExecuteNonQuery();
+
+                            if (rowsUpdated == 0)
                             {
-                                throw new Exception("No rows were updated in the Users table.");
+                                throw new Exception("Failed to update Users table.");
                             }
                         }
 
-                        // Commit the transaction if all updates succeed
+                        // Commit transaction
                         transaction.Commit();
                         return true;
                     }
                     catch (Exception ex)
                     {
-                        // Roll back the transaction if any update fails
                         transaction.Rollback();
                         Console.WriteLine($"Transaction Error: {ex.Message}");
                         return false;
@@ -84,10 +89,10 @@ namespace TOGETHERCULTURECRM.Classes.Services.Membership
             }
             catch (Exception ex)
             {
-                // Handle any other errors
                 Console.WriteLine($"Error: {ex.Message}");
                 return false;
             }
         }
+
     }
 }
