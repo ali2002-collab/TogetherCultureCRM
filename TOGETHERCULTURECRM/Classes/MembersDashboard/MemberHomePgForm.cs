@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using TOGETHERCULTURECRM.Classes.Auth;
+using TOGETHERCULTURECRM.Classes.DbManager;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Home;
+using TOGETHERCULTURECRM.Classes.MembersDashboard.Profile;
+using TOGETHERCULTURECRM.Classes.Services.Friends;
 
 namespace TOGETHERCULTURECRM.Classes.MembersDashboard
 {
@@ -51,6 +55,20 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
             form.Show();
         }
 
+        //updating is_online to false once user logs out
+        private void UpdateIsOnlineStatus(int userId, bool isOnline)
+        {
+            string query = "UPDATE Users SET is_online = @IsOnline WHERE user_id = @UserId";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@IsOnline", isOnline ? 1 : 0),
+                new SqlParameter("@UserId", userId)
+            };
+
+            DbHelper dbHelper = new DbHelper();
+            dbHelper.ExecuteNonQuery(query, parameters);
+        }
+
 
 
 
@@ -71,6 +89,9 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
 
             if (confirmResult == DialogResult.Yes)
             {
+                // Update is_online to false (0)
+                UpdateIsOnlineStatus(LoggedInUser.UserId, false);
+
                 // Clear the logged-in user details
                 LoggedInUser.Clear();
 
@@ -111,12 +132,16 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-
+            SetActiveButton(sender as Button);
+            MemberProfileForm MemberProfileForm = new MemberProfileForm();
+            LoadFormIntoPanel(MemberProfileForm);
         }
 
         private void btnConnections_Click(object sender, EventArgs e)
         {
-
+            SetActiveButton(sender as Button);
+            FriendsServiceForm friendServiceForm = new FriendsServiceForm();
+            LoadFormIntoPanel(friendServiceForm);
         }
 
         private void linkFeedback_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -143,5 +168,7 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
         {
 
         }
+
+
     }
 }

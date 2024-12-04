@@ -19,6 +19,9 @@ namespace TOGETHERCULTURECRM.Classes.Auth
         public static DateTime CreatedAt { get; set; }
         public static DateTime DateOfBirth { get; set; }
         public static string Gender { get; set; }
+        public static byte[] ProfilePicture { get; set; }
+
+
 
         // Method to clear user details on logout
         public static void Clear()
@@ -33,6 +36,7 @@ namespace TOGETHERCULTURECRM.Classes.Auth
             CreatedAt = DateTime.MinValue;
             DateOfBirth = DateTime.MinValue;
             Gender = null;
+            ProfilePicture = null;
         }
     }
 }

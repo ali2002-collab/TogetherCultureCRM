@@ -272,16 +272,16 @@
             // 
             // btnProfile
             // 
-            this.btnProfile.BackColor = System.Drawing.Color.Transparent;
+            this.btnProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(20)))), ((int)(((byte)(50)))));
             this.btnProfile.FlatAppearance.BorderSize = 0;
             this.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnProfile.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProfile.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Bold);
             this.btnProfile.ForeColor = System.Drawing.Color.Transparent;
-            this.btnProfile.Image = global::TOGETHERCULTURECRM.Properties.Resources.icons8_avatar_48;
-            this.btnProfile.Location = new System.Drawing.Point(1056, 2);
+            this.btnProfile.Location = new System.Drawing.Point(1065, 14);
             this.btnProfile.Name = "btnProfile";
-            this.btnProfile.Size = new System.Drawing.Size(71, 48);
+            this.btnProfile.Size = new System.Drawing.Size(83, 31);
             this.btnProfile.TabIndex = 6;
+            this.btnProfile.Text = "My Profile";
             this.btnProfile.UseVisualStyleBackColor = false;
             this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
             // 
@@ -307,7 +307,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(682, 12);
+            this.btnSearch.Location = new System.Drawing.Point(682, 13);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(89, 29);
             this.btnSearch.TabIndex = 1;

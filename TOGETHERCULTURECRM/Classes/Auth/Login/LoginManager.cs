@@ -15,7 +15,7 @@ namespace TOGETHERCULTURECRM.Classes.Auth.Login
         public User AuthenticateUser(string email, string password)
         {
             // SQL query to retrieve user details from the database using the provided email
-            string query = "SELECT user_id, first_name, last_name, membership_status, user_type, password, last_login, created_at, date_of_birth, gender FROM Users WHERE email = @Email";
+            string query = "SELECT user_id, first_name, last_name, email, membership_status, user_type, password, last_login, created_at, date_of_birth, gender, profile_picture FROM Users WHERE email = @Email";
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@Email", email) // Parameterized query to prevent SQL injection
@@ -28,7 +28,7 @@ namespace TOGETHERCULTURECRM.Classes.Auth.Login
             if (reader.Read())
             {
                 // Retrieve the hashed password from the database
-                string hashedPassword = reader.GetString(5);
+                string hashedPassword = reader.GetString(6);
 
                 // Verify the provided password against the stored hashed password
                 if (PasswordEncryptor.VerifyPassword(password, hashedPassword))
@@ -37,18 +37,31 @@ namespace TOGETHERCULTURECRM.Classes.Auth.Login
                     LoggedInUser.UserId = reader.GetInt32(0);
                     LoggedInUser.FirstName = reader.GetString(1);
                     LoggedInUser.LastName = reader.GetString(2);
-                    LoggedInUser.MembershipStatus = reader.IsDBNull(3) ? null : reader.GetString(3);
-                    LoggedInUser.UserType = reader.GetString(4);
-                    LoggedInUser.LastLogin = reader.IsDBNull(6) ? (DateTime?)null : reader.GetDateTime(6);
-                    LoggedInUser.CreatedAt = reader.GetDateTime(7);
-                    LoggedInUser.DateOfBirth = reader.GetDateTime(8);
-                    LoggedInUser.Gender = reader.GetString(9);
+                    LoggedInUser.Email = reader.GetString(3);
+                    LoggedInUser.MembershipStatus = reader.IsDBNull(4) ? null : reader.GetString(4);
+                    LoggedInUser.UserType = reader.GetString(5);
+                    LoggedInUser.LastLogin = reader.IsDBNull(7) ? (DateTime?)null : reader.GetDateTime(7);
+                    LoggedInUser.CreatedAt = reader.GetDateTime(8);
+                    LoggedInUser.DateOfBirth = reader.GetDateTime(9);
+                    LoggedInUser.Gender = reader.GetString(10);
+
+                    if (!reader.IsDBNull(11)) 
+                    {
+                        LoggedInUser.ProfilePicture = (byte[])reader["profile_picture"];
+                    }
+                    else
+                    {
+                        LoggedInUser.ProfilePicture = null; // No profile picture set
+                    }
+
 
                     // Close the reader after retrieving the user data
                     reader.Close();
 
                     // Update the last login time for the authenticated user
                     UpdateLastLogin(LoggedInUser.UserId);
+                    // Update is_online to true (1)
+                    UpdateIsOnlineStatus(LoggedInUser.UserId, true);
 
                     // Return a new User object with the authenticated user's details
                     return new User
@@ -56,6 +69,7 @@ namespace TOGETHERCULTURECRM.Classes.Auth.Login
                         UserId = LoggedInUser.UserId,
                         FirstName = LoggedInUser.FirstName,
                         LastName = LoggedInUser.LastName,
+                        Email = LoggedInUser.Email,
                         MembershipStatus = LoggedInUser.MembershipStatus,
                         UserType = LoggedInUser.UserType,
                         LastLogin = LoggedInUser.LastLogin,
@@ -85,5 +99,19 @@ namespace TOGETHERCULTURECRM.Classes.Auth.Login
             // Execute the update query
             db.ExecuteNonQuery(updateQuery, updateParameters);
         }
+
+        private void UpdateIsOnlineStatus(int userId, bool isOnline)
+        {
+            string query = "UPDATE Users SET is_online = @IsOnline WHERE user_id = @UserId";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@IsOnline", isOnline ? 1 : 0),
+                new SqlParameter("@UserId", userId)
+            };
+
+            db.ExecuteNonQuery(query, parameters);
+        }
+
+
     }
 }
