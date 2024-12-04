@@ -113,6 +113,16 @@ namespace TOGETHERCULTURECRM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Profile_avatar_placeholder_large {
+            get {
+                object obj = ResourceManager.GetObject("Profile_avatar_placeholder_large", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TC_Logos_01 {
             get {
                 object obj = ResourceManager.GetObject("TC_Logos-01", resourceCulture);

@@ -133,6 +133,19 @@
     <Compile Include="Classes\MembersDashboard\MemberHomePgForm.Designer.cs">
       <DependentUpon>MemberHomePgForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\MembersDashboard\Profile\EditProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\MembersDashboard\Profile\EditProfileForm.Designer.cs">
+      <DependentUpon>EditProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\MembersDashboard\Profile\MemberProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\MembersDashboard\Profile\MemberProfileForm.Designer.cs">
+      <DependentUpon>MemberProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\MembersDashboard\Profile\ProfileManager.cs" />
     <Compile Include="Classes\Services\Chats\ChatService.cs" />
     <Compile Include="Classes\Services\DigitalContent\PostService.cs" />
     <Compile Include="Classes\Services\Events\EventsService.cs" />
@@ -157,6 +170,12 @@
       <DependentUpon>SelectMembershipPlanForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Services\Notifcation\NotificationService.cs" />
+    <Compile Include="Classes\Services\Friends\FriendsServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Friends\FriendsServiceForm.Designer.cs">
+      <DependentUpon>FriendsServiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Services\Search\SearchManager.cs" />
     <Compile Include="CrmIntro.cs">
       <SubType>Form</SubType>
@@ -188,11 +207,20 @@
     <EmbeddedResource Include="Classes\MembersDashboard\MemberHomePgForm.resx">
       <DependentUpon>MemberHomePgForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Classes\MembersDashboard\Profile\EditProfileForm.resx">
+      <DependentUpon>EditProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\MembersDashboard\Profile\MemberProfileForm.resx">
+      <DependentUpon>MemberProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Classes\Services\Membership\RequestSentForm.resx">
       <DependentUpon>RequestSentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Classes\Services\Membership\SelectMembershipPlanForm.resx">
       <DependentUpon>SelectMembershipPlanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Friends\FriendsServiceForm.resx">
+      <DependentUpon>FriendsServiceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrmIntro.resx">
       <DependentUpon>CrmIntro.cs</DependentUpon>
@@ -228,6 +256,7 @@
     <None Include="Assets\icons8-notification-24.png" />
     <None Include="Assets\icons8-avatar-50.png" />
     <None Include="Assets\icons8-avatar-48.png" />
+    <None Include="Assets\Profile_avatar_placeholder_large.png" />
     <Content Include="Assets\TC_Logos-01.png" />
     <None Include="Assets\Untitled design %284%29.png" />
     <Content Include="TcCRMDB.mdf">
