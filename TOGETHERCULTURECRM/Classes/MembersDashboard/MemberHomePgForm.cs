@@ -6,6 +6,7 @@ using TOGETHERCULTURECRM.Classes.Auth;
 using TOGETHERCULTURECRM.Classes.DbManager;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Home;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Profile;
+using TOGETHERCULTURECRM.Classes.Services.Events.Event_Management_Member;
 using TOGETHERCULTURECRM.Classes.Services.Friends;
 
 namespace TOGETHERCULTURECRM.Classes.MembersDashboard
@@ -122,7 +123,9 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
 
         private void btnEvents_Click(object sender, EventArgs e)
         {
-
+            SetActiveButton(sender as Button);
+            EventMemberForm eventMemberForm = new EventMemberForm(LoggedInUser.UserId);
+            LoadFormIntoPanel(eventMemberForm);
         }
 
         private void btnSpaceBook_Click(object sender, EventArgs e)

@@ -5,6 +5,7 @@ using TOGETHERCULTURECRM.Classes.MembersDashboard;
 using TOGETHERCULTURECRM.Classes.Services.Membership;
 using TOGETHERCULTURECRM.Classes.Auth.ForgetPassword;
 using TOGETHERCULTURECRM.Classes.AdminDashboard.ApproveMembers;
+using TOGETHERCULTURECRM.Classes.AdminDashboard;
 
 namespace TOGETHERCULTURECRM.Classes.Auth
 {
@@ -38,7 +39,7 @@ namespace TOGETHERCULTURECRM.Classes.Auth
                 {
                     // Show welcome message and open the admin dashboard
                     MessageBox.Show($"Welcome Admin {LoggedInUser.FirstName}");
-                    ApproveMembersForm adminDashboard = new ApproveMembersForm();
+                    AdminHomePgForm adminDashboard = new AdminHomePgForm();
                     adminDashboard.Show();
                     this.Close(); // Close the login form
                 }
