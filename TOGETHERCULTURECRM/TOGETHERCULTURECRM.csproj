@@ -147,7 +147,6 @@
       <DependentUpon>MemberProfileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\MembersDashboard\Profile\ProfileManager.cs" />
-    <Compile Include="Classes\Services\Chats\ChatService.cs" />
     <Compile Include="Classes\Services\DigitalContent\PostService.cs" />
     <Compile Include="Classes\Services\Events\Event Management Admin\Admin Create Event\CreateNewEventForm.cs">
       <SubType>Form</SubType>
@@ -206,7 +205,6 @@
     <Compile Include="Classes\Services\Membership\SelectMembershipPlanForm.Designer.cs">
       <DependentUpon>SelectMembershipPlanForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Services\Notifcation\NotificationService.cs" />
     <Compile Include="Classes\Services\Friends\FriendsServiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +212,49 @@
       <DependentUpon>FriendsServiceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Services\Search\SearchManager.cs" />
+    <Compile Include="Classes\Services\Spaces\Space Admin\Create\AdminSpaceCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Admin\Create\AdminSpaceCreateForm.Designer.cs">
+      <DependentUpon>AdminSpaceCreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Admin\Edit\EditSpaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Admin\Edit\EditSpaceForm.Designer.cs">
+      <DependentUpon>EditSpaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Admin\SpaceAdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Admin\SpaceAdminForm.Designer.cs">
+      <DependentUpon>SpaceAdminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Admin\SpaceStats\SpaceStatsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Admin\SpaceStats\SpaceStatsForm.Designer.cs">
+      <DependentUpon>SpaceStatsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Member\Booked\BookedSpacesMemberForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Member\Booked\BookedSpacesMemberForm.Designer.cs">
+      <DependentUpon>BookedSpacesMemberForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Member\Initiate Booking\MakeBookingSpaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Member\Initiate Booking\MakeBookingSpaceForm.Designer.cs">
+      <DependentUpon>MakeBookingSpaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Member\SpaceMemberForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\Space Member\SpaceMemberForm.Designer.cs">
+      <DependentUpon>SpaceMemberForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Services\Spaces\SpaceService.cs" />
     <Compile Include="CrmIntro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +320,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Classes\Services\Friends\FriendsServiceForm.resx">
       <DependentUpon>FriendsServiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Spaces\Space Admin\Create\AdminSpaceCreateForm.resx">
+      <DependentUpon>AdminSpaceCreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Spaces\Space Admin\Edit\EditSpaceForm.resx">
+      <DependentUpon>EditSpaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Spaces\Space Admin\SpaceAdminForm.resx">
+      <DependentUpon>SpaceAdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Spaces\Space Admin\SpaceStats\SpaceStatsForm.resx">
+      <DependentUpon>SpaceStatsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Spaces\Space Member\Booked\BookedSpacesMemberForm.resx">
+      <DependentUpon>BookedSpacesMemberForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Spaces\Space Member\Initiate Booking\MakeBookingSpaceForm.resx">
+      <DependentUpon>MakeBookingSpaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Spaces\Space Member\SpaceMemberForm.resx">
+      <DependentUpon>SpaceMemberForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrmIntro.resx">
       <DependentUpon>CrmIntro.cs</DependentUpon>

@@ -8,6 +8,7 @@ using TOGETHERCULTURECRM.Classes.MembersDashboard.Home;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Profile;
 using TOGETHERCULTURECRM.Classes.Services.Events.Event_Management_Member;
 using TOGETHERCULTURECRM.Classes.Services.Friends;
+using TOGETHERCULTURECRM.Classes.Services.Spaces.Space_Member;
 
 namespace TOGETHERCULTURECRM.Classes.MembersDashboard
 {
@@ -130,7 +131,9 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
 
         private void btnSpaceBook_Click(object sender, EventArgs e)
         {
-
+            SetActiveButton(sender as Button);
+            SpaceMemberForm spaceMemberForm = new SpaceMemberForm();
+            LoadFormIntoPanel(spaceMemberForm);
         }
 
         private void btnProfile_Click(object sender, EventArgs e)
