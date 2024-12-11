@@ -13,6 +13,7 @@ using TOGETHERCULTURECRM.Classes.Auth;
 using TOGETHERCULTURECRM.Classes.DbManager;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Home;
 using TOGETHERCULTURECRM.Classes.Services.Events.Event_Management_Admin;
+using TOGETHERCULTURECRM.Classes.Services.Spaces.Space_Admin;
 
 namespace TOGETHERCULTURECRM.Classes.AdminDashboard
 {
@@ -99,6 +100,8 @@ namespace TOGETHERCULTURECRM.Classes.AdminDashboard
         private void btnManageSpaceBook_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender as Button);
+            SpaceAdminForm spaceAdminForm = new SpaceAdminForm();
+            LoadFormIntoPanel(spaceAdminForm);
         }
 
         private void linkSupport_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
