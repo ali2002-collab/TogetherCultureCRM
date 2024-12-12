@@ -190,6 +190,38 @@ namespace TOGETHERCULTURECRM.Classes.Services.Events
         }
 
 
+        public DataRow GetLatestAvailableEvent(int userId)
+        {
+            string query = @"
+            SELECT TOP 1 e.*, 
+                   ISNULL((SELECT COUNT(*) FROM EventAttendance ea WHERE ea.event_id = e.event_id), 0) AS attendance_count
+            FROM Events e
+            WHERE e.event_date >= GETDATE() 
+              AND NOT EXISTS (
+                  SELECT 1 FROM EventAttendance ea 
+                  WHERE ea.event_id = e.event_id AND ea.user_id = @UserId
+              )
+            ORDER BY e.event_date ASC";
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@UserId", userId)
+            };
+
+            try
+            {
+                using (SqlDataReader reader = dbHelper.ExecuteReader(query, parameters))
+                {
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching latest available event: {ex.Message}");
+                return null;
+            }
+        }
 
 
 
@@ -222,6 +254,9 @@ namespace TOGETHERCULTURECRM.Classes.Services.Events
                 return null;
             }
         }
+
+
+
         public bool WithdrawFromEvent(int eventId, int userId)
         {
             string query = "DELETE FROM EventAttendance WHERE event_id = @EventId AND user_id = @UserId";
