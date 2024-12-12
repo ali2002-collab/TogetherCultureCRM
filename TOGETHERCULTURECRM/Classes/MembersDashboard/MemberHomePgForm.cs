@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,6 +10,7 @@ using TOGETHERCULTURECRM.Classes.MembersDashboard.Profile;
 using TOGETHERCULTURECRM.Classes.Services.Events.Event_Management_Member;
 using TOGETHERCULTURECRM.Classes.Services.FeedbackService.MemberFeedbackEnd;
 using TOGETHERCULTURECRM.Classes.Services.Friends;
+using TOGETHERCULTURECRM.Classes.Services.Search;
 using TOGETHERCULTURECRM.Classes.Services.Spaces.Space_Member;
 
 namespace TOGETHERCULTURECRM.Classes.MembersDashboard
@@ -18,7 +20,7 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
         private Button activeButton = null; // Track the currently active button
         private Color defaultButtonColor = Color.FromArgb(210, 20, 50); // Default button color
         private Color activeButtonColor = Color.FromArgb(72, 19, 38);  // Selected button color
-
+        private readonly SearchManager _searchManager = new SearchManager();
 
         public MemberHomePgForm()
         {
@@ -164,7 +166,27 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-           
+            string keyword = txtSearch.Text.Trim();
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                MessageBox.Show("Please enter a search keyword.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Perform the search
+            DataTable results = _searchManager.SearchAll(LoggedInUser.UserId, keyword);
+
+            if (results != null && results.Rows.Count > 0)
+            {
+                // Load the results into the SearchResultForm
+                var searchResultForm = new SearchResultForm();
+                searchResultForm.LoadSearchResults(results);
+                LoadFormIntoPanel(searchResultForm); // Load SearchResultForm in the main panel
+            }
+            else
+            {
+                MessageBox.Show("No results found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void panelMainPg_Paint(object sender, PaintEventArgs e)
