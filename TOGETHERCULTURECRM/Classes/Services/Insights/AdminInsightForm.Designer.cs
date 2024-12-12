@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lblInsights = new System.Windows.Forms.Label();
             this.lblCreateDifference = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
@@ -41,6 +41,7 @@
             this.chartMembershipPlanGrowth = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblMembersJoinedLastWeek = new System.Windows.Forms.Label();
             this.lblActiveMembers = new System.Windows.Forms.Label();
+            this.btnGenerateReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chartUserGrowth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMembershipPlanGrowth)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +64,7 @@
             this.lblCreateDifference.BackColor = System.Drawing.Color.Transparent;
             this.lblCreateDifference.Font = new System.Drawing.Font("Poppins", 12.75F, System.Drawing.FontStyle.Bold);
             this.lblCreateDifference.ForeColor = System.Drawing.Color.Black;
-            this.lblCreateDifference.Location = new System.Drawing.Point(450, 22);
+            this.lblCreateDifference.Location = new System.Drawing.Point(414, 22);
             this.lblCreateDifference.Name = "lblCreateDifference";
             this.lblCreateDifference.Size = new System.Drawing.Size(328, 30);
             this.lblCreateDifference.TabIndex = 14;
@@ -76,7 +77,7 @@
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(971, 18);
+            this.btnRefresh.Location = new System.Drawing.Point(977, 22);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(120, 38);
             this.btnRefresh.TabIndex = 15;
@@ -86,16 +87,16 @@
             // 
             // chartUserGrowth
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chartUserGrowth.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chartUserGrowth.Legends.Add(legend7);
+            chartArea1.Name = "ChartArea1";
+            this.chartUserGrowth.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartUserGrowth.Legends.Add(legend1);
             this.chartUserGrowth.Location = new System.Drawing.Point(32, 264);
             this.chartUserGrowth.Name = "chartUserGrowth";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chartUserGrowth.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartUserGrowth.Series.Add(series1);
             this.chartUserGrowth.Size = new System.Drawing.Size(464, 286);
             this.chartUserGrowth.TabIndex = 16;
             this.chartUserGrowth.Text = "chart1";
@@ -103,16 +104,16 @@
             // 
             // chartMembershipPlanGrowth
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chartMembershipPlanGrowth.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chartMembershipPlanGrowth.Legends.Add(legend8);
+            chartArea2.Name = "ChartArea1";
+            this.chartMembershipPlanGrowth.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartMembershipPlanGrowth.Legends.Add(legend2);
             this.chartMembershipPlanGrowth.Location = new System.Drawing.Point(581, 264);
             this.chartMembershipPlanGrowth.Name = "chartMembershipPlanGrowth";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chartMembershipPlanGrowth.Series.Add(series8);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartMembershipPlanGrowth.Series.Add(series2);
             this.chartMembershipPlanGrowth.Size = new System.Drawing.Size(562, 286);
             this.chartMembershipPlanGrowth.TabIndex = 17;
             this.chartMembershipPlanGrowth.Text = "chart2";
@@ -137,18 +138,34 @@
             this.lblActiveMembers.BackColor = System.Drawing.Color.Transparent;
             this.lblActiveMembers.Font = new System.Drawing.Font("Poppins", 20.75F, System.Drawing.FontStyle.Bold);
             this.lblActiveMembers.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.lblActiveMembers.Location = new System.Drawing.Point(605, 136);
+            this.lblActiveMembers.Location = new System.Drawing.Point(577, 136);
             this.lblActiveMembers.Name = "lblActiveMembers";
             this.lblActiveMembers.Size = new System.Drawing.Size(201, 50);
             this.lblActiveMembers.TabIndex = 20;
             this.lblActiveMembers.Text = "Active Users";
             this.lblActiveMembers.Click += new System.EventHandler(this.lblActiveMembers_Click);
             // 
+            // btnGenerateReport
+            // 
+            this.btnGenerateReport.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnGenerateReport.FlatAppearance.BorderSize = 0;
+            this.btnGenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerateReport.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateReport.ForeColor = System.Drawing.Color.White;
+            this.btnGenerateReport.Location = new System.Drawing.Point(957, 92);
+            this.btnGenerateReport.Name = "btnGenerateReport";
+            this.btnGenerateReport.Size = new System.Drawing.Size(153, 38);
+            this.btnGenerateReport.TabIndex = 21;
+            this.btnGenerateReport.Text = "Generate Report";
+            this.btnGenerateReport.UseVisualStyleBackColor = false;
+            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
+            // 
             // AdminInsightForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 651);
+            this.Controls.Add(this.btnGenerateReport);
             this.Controls.Add(this.lblActiveMembers);
             this.Controls.Add(this.lblMembersJoinedLastWeek);
             this.Controls.Add(this.chartMembershipPlanGrowth);
@@ -177,5 +194,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartMembershipPlanGrowth;
         private System.Windows.Forms.Label lblMembersJoinedLastWeek;
         private System.Windows.Forms.Label lblActiveMembers;
+        private System.Windows.Forms.Button btnGenerateReport;
     }
 }

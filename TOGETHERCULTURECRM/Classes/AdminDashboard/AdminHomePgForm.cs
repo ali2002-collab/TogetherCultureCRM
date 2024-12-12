@@ -13,6 +13,7 @@ using TOGETHERCULTURECRM.Classes.Auth;
 using TOGETHERCULTURECRM.Classes.DbManager;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Home;
 using TOGETHERCULTURECRM.Classes.Services.Events.Event_Management_Admin;
+using TOGETHERCULTURECRM.Classes.Services.FeedbackService.AdminFeedbackEnd;
 using TOGETHERCULTURECRM.Classes.Services.Insights;
 using TOGETHERCULTURECRM.Classes.Services.Spaces.Space_Admin;
 
@@ -111,7 +112,8 @@ namespace TOGETHERCULTURECRM.Classes.AdminDashboard
 
         private void linkFeedback_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+           AdminFeedbackEndForm adminFeedbackForm = new AdminFeedbackEndForm();
+            adminFeedbackForm.ShowDialog();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

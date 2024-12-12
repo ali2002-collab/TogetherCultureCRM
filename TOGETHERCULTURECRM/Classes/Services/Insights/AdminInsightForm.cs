@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -18,6 +14,7 @@ namespace TOGETHERCULTURECRM.Classes.Services.Insights
         {
             InitializeComponent();
             _insightService = new InsightService();
+            LoadInsights();
         }
 
         private void LoadInsights()
@@ -116,6 +113,58 @@ namespace TOGETHERCULTURECRM.Classes.Services.Insights
         private void AdminInsightForm_Load(object sender, EventArgs e)
         {
             LoadInsights();
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "AdminInsightsReport.html");
+
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine("<html><body>");
+                    writer.WriteLine("<h1>Admin Insights Report</h1>");
+                    writer.WriteLine($"<p>Generated On: {DateTime.Now}</p>");
+                    writer.WriteLine("<hr>");
+
+                    // New Members
+                    writer.WriteLine("<h2>New Members in Last Week</h2>");
+                    writer.WriteLine($"<p>Total: {_insightService.GetMembersJoinedLastWeek()}</p>");
+
+                    // Active Members
+                    writer.WriteLine("<h2>Currently Active Members</h2>");
+                    writer.WriteLine($"<p>Total: {_insightService.GetActiveMembers()}</p>");
+
+                    // User Growth Data
+                    writer.WriteLine("<h2>User Growth Statistics</h2>");
+                    writer.WriteLine("<table border='1'><tr><th>Date</th><th>New Users</th></tr>");
+                    DataTable userGrowthStats = _insightService.GetUserGrowthStats();
+                    foreach (DataRow row in userGrowthStats.Rows)
+                    {
+                        writer.WriteLine($"<tr><td>{row["RegistrationDate"]}</td><td>{row["UsersCount"]}</td></tr>");
+                    }
+                    writer.WriteLine("</table>");
+
+                    // Membership Plan Stats
+                    writer.WriteLine("<h2>Membership Plan Growth</h2>");
+                    writer.WriteLine("<table border='1'><tr><th>Plan Name</th><th>Members Count</th></tr>");
+                    DataTable membershipPlanStats = _insightService.GetMembershipPlanStats();
+                    foreach (DataRow row in membershipPlanStats.Rows)
+                    {
+                        writer.WriteLine($"<tr><td>{row["plan_name"]}</td><td>{row["MembersCount"]}</td></tr>");
+                    }
+                    writer.WriteLine("</table>");
+
+                    writer.WriteLine("</body></html>");
+                }
+
+                MessageBox.Show($"Report saved successfully at {filePath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error generating report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
