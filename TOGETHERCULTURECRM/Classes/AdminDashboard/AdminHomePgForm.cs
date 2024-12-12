@@ -15,6 +15,7 @@ using TOGETHERCULTURECRM.Classes.MembersDashboard.Home;
 using TOGETHERCULTURECRM.Classes.Services.Events.Event_Management_Admin;
 using TOGETHERCULTURECRM.Classes.Services.FeedbackService.AdminFeedbackEnd;
 using TOGETHERCULTURECRM.Classes.Services.Insights;
+using TOGETHERCULTURECRM.Classes.Services.Search;
 using TOGETHERCULTURECRM.Classes.Services.Spaces.Space_Admin;
 
 namespace TOGETHERCULTURECRM.Classes.AdminDashboard
@@ -24,6 +25,7 @@ namespace TOGETHERCULTURECRM.Classes.AdminDashboard
         private Button activeButton = null; // Track the currently active button
         private Color defaultButtonColor = Color.FromArgb(210, 20, 50); // Default button color
         private Color activeButtonColor = Color.FromArgb(72, 19, 38);  // Selected button color
+        private readonly SearchManager _searchManager = new SearchManager();
         public AdminHomePgForm()
         {
             InitializeComponent();
@@ -123,7 +125,27 @@ namespace TOGETHERCULTURECRM.Classes.AdminDashboard
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            string keyword = txtSearch.Text.Trim();
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                MessageBox.Show("Please enter a search keyword.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            // Perform the search
+            DataTable results = _searchManager.SearchAllEntities(keyword);
+
+            if (results != null && results.Rows.Count > 0)
+            {
+                // Load the results into the SearchResultFormAdmin
+                var searchResultFormAdmin = new SearchResultFormAdmin();
+                searchResultFormAdmin.LoadSearchResults(results);
+                LoadFormIntoPanel(searchResultFormAdmin); // Load SearchResultFormAdmin in the main panel
+            }
+            else
+            {
+                MessageBox.Show("No results found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnNotification_Click(object sender, EventArgs e)
