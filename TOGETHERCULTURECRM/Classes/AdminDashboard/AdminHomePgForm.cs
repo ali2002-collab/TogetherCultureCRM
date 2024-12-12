@@ -13,6 +13,7 @@ using TOGETHERCULTURECRM.Classes.Auth;
 using TOGETHERCULTURECRM.Classes.DbManager;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Home;
 using TOGETHERCULTURECRM.Classes.Services.Events.Event_Management_Admin;
+using TOGETHERCULTURECRM.Classes.Services.Insights;
 using TOGETHERCULTURECRM.Classes.Services.Spaces.Space_Admin;
 
 namespace TOGETHERCULTURECRM.Classes.AdminDashboard
@@ -76,10 +77,9 @@ namespace TOGETHERCULTURECRM.Classes.AdminDashboard
         private void BtnHomePageNavigatorAdmin_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender as Button);
-
-            // Load the HomePage form into the main panel
-            //HomeForm homeform = new HomeForm(); // Replace with your actual HomePage form
-            //LoadFormIntoPanel(homeform);
+            AdminInsightForm adminInsightForm = new AdminInsightForm();
+            LoadFormIntoPanel(adminInsightForm);
+           
         }
 
         private void btnManageMembers_Click(object sender, EventArgs e)
