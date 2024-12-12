@@ -7,6 +7,7 @@ using TOGETHERCULTURECRM.Classes.DbManager;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Home;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Profile;
 using TOGETHERCULTURECRM.Classes.Services.Events.Event_Management_Member;
+using TOGETHERCULTURECRM.Classes.Services.FeedbackService.MemberFeedbackEnd;
 using TOGETHERCULTURECRM.Classes.Services.Friends;
 using TOGETHERCULTURECRM.Classes.Services.Spaces.Space_Member;
 
@@ -152,7 +153,8 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
 
         private void linkFeedback_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            MemberFeedbackEndForm memberFeedbackEndForm = new MemberFeedbackEndForm(LoggedInUser.UserId);
+            memberFeedbackEndForm.ShowDialog();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -162,7 +164,7 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void panelMainPg_Paint(object sender, PaintEventArgs e)
