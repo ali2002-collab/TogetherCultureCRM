@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TOGETHERCULTURECRM.Classes.Auth;
+using TOGETHERCULTURECRM.Classes.Services.Interest_Selection;
 
 namespace TOGETHERCULTURECRM.Classes.MembersDashboard.Profile
 {
@@ -51,6 +52,12 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard.Profile
             editProfileForm.ShowDialog();
             LoadProfileDetails();
 
+        }
+
+        private void btnSelectInterests_Click(object sender, EventArgs e)
+        {
+            InterestSelectionForm interestSelectionForm = new InterestSelectionForm(LoggedInUser.UserId);
+            interestSelectionForm.ShowDialog();
         }
     }
 }

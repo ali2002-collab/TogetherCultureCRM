@@ -7,6 +7,7 @@ using TOGETHERCULTURECRM.Classes.Auth;
 using TOGETHERCULTURECRM.Classes.DbManager;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Home;
 using TOGETHERCULTURECRM.Classes.MembersDashboard.Profile;
+using TOGETHERCULTURECRM.Classes.Services.DigitalContent;
 using TOGETHERCULTURECRM.Classes.Services.Events.Event_Management_Member;
 using TOGETHERCULTURECRM.Classes.Services.FeedbackService.MemberFeedbackEnd;
 using TOGETHERCULTURECRM.Classes.Services.Friends;
@@ -21,6 +22,48 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
         private Color defaultButtonColor = Color.FromArgb(210, 20, 50); // Default button color
         private Color activeButtonColor = Color.FromArgb(72, 19, 38);  // Selected button color
         private readonly SearchManager _searchManager = new SearchManager();
+
+
+        public void LoadSpaceBookingFromHome()
+        {
+            // Set the active button to the "Book Space" button
+            SetActiveButton(btnSpaceBook);
+
+            // Load the SpaceMemberForm into the panel
+            SpaceMemberForm spaceMemberForm = new SpaceMemberForm();
+            LoadFormIntoPanel(spaceMemberForm);
+        }
+
+
+        public void LoadProfileFromHome()
+        {
+            // Set the active button to the "Book Space" button
+            SetActiveButton(btnProfile);
+
+            MemberProfileForm memberProfileForm = new MemberProfileForm();
+            LoadFormIntoPanel(memberProfileForm);
+        }
+
+
+        public void LoadeventsForm()
+        {
+          
+            SetActiveButton(btnEvents);
+
+           
+            EventMemberForm eventmemberForm = new EventMemberForm(LoggedInUser.UserId);
+            LoadFormIntoPanel(eventmemberForm);
+        }
+
+
+        public void LoadDigitalContent()
+        {
+            
+            SetActiveButton(btnDigitalContent);
+            DemoForm demoForm = new DemoForm();
+            LoadFormIntoPanel(demoForm);
+            
+        }
 
         public MemberHomePgForm()
         {
@@ -115,14 +158,17 @@ namespace TOGETHERCULTURECRM.Classes.MembersDashboard
             SetActiveButton(sender as Button);
 
             // Load the HomePage form into the main panel
-            HomeForm homeform = new HomeForm(); // Replace with your actual HomePage form
+            HomeForm homeform = new HomeForm(); 
             LoadFormIntoPanel(homeform);
 
         }
 
         private void btnDigitalContent_Click(object sender, EventArgs e)
         {
+            SetActiveButton(sender as Button);
 
+            DemoForm demoForm = new DemoForm();
+            LoadFormIntoPanel(demoForm);
         }
 
         private void btnEvents_Click(object sender, EventArgs e)

@@ -216,7 +216,12 @@
       <DependentUpon>MemberProfileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\MembersDashboard\Profile\ProfileManager.cs" />
-    <Compile Include="Classes\Services\DigitalContent\PostService.cs" />
+    <Compile Include="Classes\Services\DigitalContent\DemoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Services\DigitalContent\DemoForm.Designer.cs">
+      <DependentUpon>DemoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Services\Events\Event Management Admin\Admin Create Event\CreateNewEventForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,6 +280,7 @@
       <DependentUpon>AdminInsightForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Services\Insights\InsightService.cs" />
+    <Compile Include="Classes\Services\Interest Selection\InterestSelection.cs" />
     <Compile Include="Classes\Services\Interest Selection\InterestSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -395,6 +401,9 @@
     <EmbeddedResource Include="Classes\MembersDashboard\Profile\MemberProfileForm.resx">
       <DependentUpon>MemberProfileForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\DigitalContent\DemoForm.resx">
+      <DependentUpon>DemoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Classes\Services\Events\Event Management Admin\Admin Create Event\CreateNewEventForm.resx">
       <DependentUpon>CreateNewEventForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -421,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Classes\Services\Insights\AdminInsightForm.resx">
       <DependentUpon>AdminInsightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Services\Interest Selection\InterestSelectionForm.resx">
+      <DependentUpon>InterestSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Classes\Services\Membership\RequestSentForm.resx">
       <DependentUpon>RequestSentForm.cs</DependentUpon>

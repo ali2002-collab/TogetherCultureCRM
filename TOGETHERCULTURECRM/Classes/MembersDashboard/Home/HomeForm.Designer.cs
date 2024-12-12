@@ -40,12 +40,15 @@
             this.line3 = new System.Windows.Forms.Label();
             this.lblUpcomingEvents = new System.Windows.Forms.Label();
             this.panelViewEvents1 = new System.Windows.Forms.Panel();
-            this.panelViewEvents2 = new System.Windows.Forms.Panel();
             this.btnViewMoreEvents = new System.Windows.Forms.Button();
             this.lblDigitalContent = new System.Windows.Forms.Label();
             this.panelViewDigitalContent1 = new System.Windows.Forms.Panel();
+            this.lblDemoSection = new System.Windows.Forms.Label();
             this.panelViewDigitalContent2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.panelViewDigitalContent1.SuspendLayout();
+            this.panelViewDigitalContent2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblWelcome
@@ -177,19 +180,12 @@
             // 
             // panelViewEvents1
             // 
-            this.panelViewEvents1.BackColor = System.Drawing.Color.LightGray;
+            this.panelViewEvents1.BackColor = System.Drawing.Color.White;
             this.panelViewEvents1.Location = new System.Drawing.Point(21, 317);
             this.panelViewEvents1.Name = "panelViewEvents1";
-            this.panelViewEvents1.Size = new System.Drawing.Size(255, 208);
+            this.panelViewEvents1.Size = new System.Drawing.Size(674, 195);
             this.panelViewEvents1.TabIndex = 11;
-            // 
-            // panelViewEvents2
-            // 
-            this.panelViewEvents2.BackColor = System.Drawing.Color.LightGray;
-            this.panelViewEvents2.Location = new System.Drawing.Point(375, 317);
-            this.panelViewEvents2.Name = "panelViewEvents2";
-            this.panelViewEvents2.Size = new System.Drawing.Size(255, 208);
-            this.panelViewEvents2.TabIndex = 12;
+            this.panelViewEvents1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelViewEvents1_Paint);
             // 
             // btnViewMoreEvents
             // 
@@ -198,12 +194,13 @@
             this.btnViewMoreEvents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewMoreEvents.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewMoreEvents.ForeColor = System.Drawing.Color.White;
-            this.btnViewMoreEvents.Location = new System.Drawing.Point(269, 542);
+            this.btnViewMoreEvents.Location = new System.Drawing.Point(47, 542);
             this.btnViewMoreEvents.Name = "btnViewMoreEvents";
             this.btnViewMoreEvents.Size = new System.Drawing.Size(118, 29);
             this.btnViewMoreEvents.TabIndex = 13;
             this.btnViewMoreEvents.Text = "View More";
             this.btnViewMoreEvents.UseVisualStyleBackColor = false;
+            this.btnViewMoreEvents.Click += new System.EventHandler(this.btnViewMoreEvents_Click);
             // 
             // lblDigitalContent
             // 
@@ -219,18 +216,44 @@
             // panelViewDigitalContent1
             // 
             this.panelViewDigitalContent1.BackColor = System.Drawing.Color.LightGray;
+            this.panelViewDigitalContent1.Controls.Add(this.lblDemoSection);
             this.panelViewDigitalContent1.Location = new System.Drawing.Point(864, 77);
             this.panelViewDigitalContent1.Name = "panelViewDigitalContent1";
             this.panelViewDigitalContent1.Size = new System.Drawing.Size(255, 208);
             this.panelViewDigitalContent1.TabIndex = 13;
             // 
+            // lblDemoSection
+            // 
+            this.lblDemoSection.AutoSize = true;
+            this.lblDemoSection.BackColor = System.Drawing.Color.Transparent;
+            this.lblDemoSection.Font = new System.Drawing.Font("Poppins", 20.75F, System.Drawing.FontStyle.Bold);
+            this.lblDemoSection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(26)))), ((int)(((byte)(55)))));
+            this.lblDemoSection.Location = new System.Drawing.Point(17, 73);
+            this.lblDemoSection.Name = "lblDemoSection";
+            this.lblDemoSection.Size = new System.Drawing.Size(220, 50);
+            this.lblDemoSection.TabIndex = 16;
+            this.lblDemoSection.Text = "Demo Section";
+            // 
             // panelViewDigitalContent2
             // 
             this.panelViewDigitalContent2.BackColor = System.Drawing.Color.LightGray;
+            this.panelViewDigitalContent2.Controls.Add(this.label1);
             this.panelViewDigitalContent2.Location = new System.Drawing.Point(864, 317);
             this.panelViewDigitalContent2.Name = "panelViewDigitalContent2";
             this.panelViewDigitalContent2.Size = new System.Drawing.Size(255, 208);
             this.panelViewDigitalContent2.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Poppins", 20.75F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(26)))), ((int)(((byte)(55)))));
+            this.label1.Location = new System.Drawing.Point(17, 85);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(220, 50);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Demo Section";
             // 
             // button1
             // 
@@ -239,12 +262,13 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(942, 542);
+            this.button1.Location = new System.Drawing.Point(934, 542);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(118, 29);
             this.button1.TabIndex = 15;
             this.button1.Text = "View More";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // HomeForm
             // 
@@ -257,7 +281,6 @@
             this.Controls.Add(this.panelViewDigitalContent1);
             this.Controls.Add(this.lblDigitalContent);
             this.Controls.Add(this.btnViewMoreEvents);
-            this.Controls.Add(this.panelViewEvents2);
             this.Controls.Add(this.panelViewEvents1);
             this.Controls.Add(this.lblUpcomingEvents);
             this.Controls.Add(this.line3);
@@ -274,6 +297,10 @@
             this.Name = "HomeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeForm";
+            this.panelViewDigitalContent1.ResumeLayout(false);
+            this.panelViewDigitalContent1.PerformLayout();
+            this.panelViewDigitalContent2.ResumeLayout(false);
+            this.panelViewDigitalContent2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,11 +320,12 @@
         private System.Windows.Forms.Label line3;
         private System.Windows.Forms.Label lblUpcomingEvents;
         private System.Windows.Forms.Panel panelViewEvents1;
-        private System.Windows.Forms.Panel panelViewEvents2;
         private System.Windows.Forms.Button btnViewMoreEvents;
         private System.Windows.Forms.Label lblDigitalContent;
         private System.Windows.Forms.Panel panelViewDigitalContent1;
         private System.Windows.Forms.Panel panelViewDigitalContent2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblDemoSection;
+        private System.Windows.Forms.Label label1;
     }
 }
